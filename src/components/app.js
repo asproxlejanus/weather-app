@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { Today } from "./routes/index";
 import { AppContext, AppProvider } from "../components/context/app-context";
@@ -21,12 +21,17 @@ const SearchContainer = styled.div`
 
 const Search = () => {
   const { state, setCity } = useContext(AppContext);
+  const [city, onInputChange] = useState("");
   console.log(state);
   return (
     <SearchContainer className="ui icon input">
-      <input type="text" placeholder="Search..." />
+      <input
+        type="text"
+        placeholder="Search..."
+        onChange={(e) => onInputChange(e.target.value)}
+      />
       <i
-        onClick={() => setCity("Barcelona")}
+        onClick={() => setCity(city)}
         className="inverted circular search link icon"
       />
     </SearchContainer>
